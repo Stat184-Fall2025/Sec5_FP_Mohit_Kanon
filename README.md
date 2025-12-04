@@ -1,8 +1,8 @@
-# Title
+# Using R to understand Stock Price Changes
 Our repo is to show viewers how our project works, and the base code that was used to to create it. We will show others how we created our code that shows how stocks change over time through data visualizations. 
 
 ## Overview
-Expand on those introductory sentences with a brief but informative description of your project's purpose and goals. This section should help visitors decide whether they should dig deeper into your repo/project.
+Our projects purpose is to select popular stocks from yahoo finance and accurately represent the data collected in a way that makes it easier to understand. Our goal is to explain the data in a way that makes the reader understand the visuals and the overall stock. 
 
 ## Interesting Insight (Optional)
 This is optional but highly recommended. You'll include one interesting insight from your project as part of the README. This insight is most effective when you include a visual. Keep in mind that this visual must be included as an image file (e.g., JPG, PNG, etc.). You can export plots created with {ggplot2} by using the function ggsave.
@@ -21,8 +21,8 @@ Use this section to explain the structure of your repo. This should help visitor
 - apa7.csl --- citations 
 - README.md --- main overview of our project 
 - Stocks (folder) -
--- AAPL  --- File containing code and visualizations of the stock apple with an overview of how to understand the visualizations and what it meeans 
--- NVDA  --- File containing code and visualizations of the stock nvidia with an overview of how to understand the visualizations and what it meeans 
+- AAPL: File containing code and visualizations of the stock apple with an overview of how to understand the visualizations and what it meeans 
+- NVDA: File containing code and visualizations of the stock nvidia with an overview of how to understand the visualizations and what it meeans 
 
 ## Authors
 Authors: Mohit, Yizhen, Kanon(mkn5394@psu.edu, yzj5267@psu.edu, kft5329@psu.edu)
