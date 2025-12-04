@@ -8,7 +8,8 @@ Interesting Insight (Optional)
 This is optional but highly recommended. You'll include one interesting insight from your project as part of the README. This insight is most effective when you include a visual. Keep in mind that this visual must be included as an image file (e.g., JPG, PNG, etc.). You can export plots created with {ggplot2} by using the function ggsave.
 
 Data Sources and Acknowledgements
-Be sure to list where you got any data used within the project. Be sure to acknowledge any one whose work or elements you're drawing upon.
+https://www.quantmod.com/examples/intro/
+https://finance.yahoo.com/
 
 Current Plan
 Provide some information about what you intend to doe with the project. You can additionally refer the visitor to your detailed plan document.
