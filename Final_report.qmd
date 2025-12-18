@@ -1,7 +1,7 @@
 ---
 title: "Analyzing Stocks Using the Moving Average Crossover Strategy"
 author: "Mohit Naveen and Kanon Tsuda"
-date: "December 17, 2024"
+date: "December 17, 2025"
 format:
   pdf:
     toc: true
@@ -21,13 +21,13 @@ Our research question is: How do the 50-day and 200-day simple moving averages s
 
 ## Data Source and Collection
 
-Our data was obtained from Yahoo Finance through the `quantmod` package in R. Yahoo Finance aggregates stock market data from major exchanges and provides free access for research and analysis purposes.
+Our data was obtained from Yahoo Finance [@yahoofinance] through the `quantmod` package in R [@quantmod]. Yahoo Finance aggregates stock market data from major exchanges and provides free access for research and analysis purposes.
 
 **Who:** Yahoo Finance, collects and distributes financial market data from stock exchanges worldwide.
 
 **What:** Daily stock price data for NVIDIA Corporation (NVDA) and Sony Group Corporation (SONY), including open, high, low, and close prices, as well as trading volume for each trading day.
 
-**When:** Data spans from January 1, 2020 to December 17, 2024, covering  1,240 trading days over nearly five years.
+**When:** Data spans from January 1, 2020 to December 17, 2025, covering  1,240 trading days over nearly five years.
 
 **Where:** Data originates from the NASDAQ stock exchange where both NVIDIA and Sony are listed and actively traded.
 
@@ -49,7 +49,7 @@ Our data was obtained from Yahoo Finance through the `quantmod` package in R. Ya
 
 ## CARE Principles Assessment
 
-------
+The CARE principles (Collective Benefit, Authority to Control, Responsibility, Ethics) primarily apply to Indigenous data governance. Since this dataset consists of publicly-traded stock market information rather than personal or community data, CARE principles are not directly applicable. However, we acknowledge the importance of these principles for datasets involving human subjects, particularly Indigenous communities. 
 
 # Variables and Attributes
 
@@ -82,7 +82,7 @@ These derived attributes allow us to systematically identify trend direction, mo
 #| message: false
 #| warning: false
 
-# Code Chunk Header
+# tidyverse style
 # Primary Author: Mohit Naveen
 # Reviewer: Kanon Tsuda
 # Style Guide: Tidyverse Style
@@ -111,14 +111,17 @@ nvda_df <- data.frame(
 
 ### Price Trend Visualization
 
----------
+![NVIDIA stock price from 2020 to present showing daily closing prices with 50-day simple moving average (blue line) and 200-day simple moving average (red line). The moving averages smooth out daily price fluctuations to reveal underlying trends. When the blue 50-day line is above the red 200-day line, it indicates bullish market momentum.](nvidia/nvidia graphs and tables/plot for final project.png){#fig-nvidia}
+
+Figure @fig-nvidia shows NVIDIA's stock price from January 2020 through December 2025. The chart shows strong upward momentum, especially from 2023 onward, likely driven by increased demand for AI technology. For most of the period, the 50-day moving average (blue line) stays above the 200-day moving average (red line), indicating sustained bullish conditions. The steep rise in 2024 and 2025 shows the 50-day moving average pulling further away from the 200-day average, suggesting accelerating momentum.
+
 ### Summary Tables
 
 ```{r nvidia-sample-table}
 #| echo: false
 #| tbl-cap: "NVIDIA stock prices and moving averages sampled every 50 trading days to show progression over time"
 
-# Code Chunk Header
+# tidyverse style
 # Primary Author: Mohit Naveen
 # Reviewer: Kanon Tsuda
 
@@ -137,15 +140,13 @@ kable(sample_table,
       row.names = FALSE)
 ```
 
-Table 1 presents a sample of NVIDIA's stock data at approximately 50-day intervals throughout the analysis period, providing a snapshot of how prices and moving averages evolved over time. The table clearly illustrates NVIDIA's dramatic price appreciation, with the closing price increasing from around $40-50 in early 2020 to well over $100 by 2024. The Status column predominantly shows "Bullish" classifications, indicating that for most of the analysis period, the 50-day moving average remained above the 200-day moving average. This persistent bullish status reflects NVIDIA's strong market performance and investor confidence during the technology boom, particularly in the AI sector.
-
-We can observe that both moving averages generally trend upward throughout the period, though the 200-day SMA shows a smoother, more gradual increase compared to the 50-day SMA, which responds more quickly to price changes. The periods where these indicators diverge significantly suggest times of accelerating momentum, while periods where they converge might indicate consolidation or potential trend reversals.
+Table 1 shows NVIDIA's stock data sampled every 50 trading days. The closing price increased from around $40-50 in early 2020 to over $100 by 2025, showing dramatic growth. The Status column is mostly "Bullish," meaning the 50-day moving average stayed above the 200-day for most of this period. This reflects strong investor confidence, especially as AI technology became more important. Both moving averages trend upward, though the 200-day SMA shows a smoother increase while the 50-day responds faster to price changes.
 
 ```{r nvidia-recent-table}
 #| echo: false
 #| tbl-cap: "NVIDIA's most recent 10 trading days showing current market conditions"
 
-# Code Chunk Header
+# tidyverse style
 # Primary Author: Mohit Naveen
 # Reviewer: Kanon Tsuda
 
@@ -164,7 +165,9 @@ kable(recent_table,
       row.names = FALSE)
 ```
 
-Table 2 shows the most recent 10 trading days for NVIDIA as of December 2025. The current data reveals that NVIDIA continues to trade in bullish territory with the 50-day moving average substantially above the 200-day moving average. The closing price in recent days shows some volatility around the $170-180 range, which is typical for a stock that has experienced significant appreciation. The 50-day SMA hovering around the current price levels suggests that recent trading has been consolidating around these values, while the 200-day SMA at lower levels indicates the strong upward trajectory over the longer term. The consistent "Bullish" status across all recent trading days confirms that NVIDIA maintains positive market momentum heading into year-end 2025.
+
+Table 2 displays NVIDIA's most recent 10 trading days as of December 2025. The stock continues trading in bullish territory with the 50-day moving average well above the 200-day. Recent prices around $170-180 show some volatility, which is normal after major price gains. The consistent "Bullish" status across recent days confirms NVIDIA maintains positive momentum.
+
 
 ## Sony Stock Analysis
 ```{r sony-data-prep}
@@ -172,23 +175,23 @@ Table 2 shows the most recent 10 trading days for NVIDIA as of December 2025. Th
 #| message: false
 #| warning: false
 
-# Code Chunk Header
+# tidyverse style
 # Primary Author: Kanon Tsuda
 # Reviewer: Mohit Naveen
-# Style Guide: Tidyverse Style 
 
+# Load libraries
 library(quantmod)
 library(dplyr)
 library(knitr)
 
-# Get Sony stock data
+# Get Sony stock data (Sony Group Corporation ADR)
 getSymbols("SONY", from = "2020-01-01", to = Sys.Date())
 
-#Calculate moving averages
+# Calculate 50-day and 200-day moving averages
 SONY$SMA50 <- SMA(Cl(SONY), n = 50)
 SONY$SMA200 <- SMA(Cl(SONY), n = 200)
 
-#Create tidy data frame
+# Create a tidy data frame for analysis
 sony_df <- data.frame(
   Date = index(SONY),
   Price = as.numeric(Cl(SONY)),
@@ -197,31 +200,25 @@ sony_df <- data.frame(
 ) %>%
   na.omit() %>%
   mutate(Status = ifelse(SMA_50_day > SMA_200_day, "Bullish", "Bearish"))
-
+```
 ### Price Trend Visualization
 
-Analyzing Sony's stock price and the 50 and 200-day SMAs, the periods from 2020 to the present show obvious trending behavior. In 2020 and 2021, the stock followed an upward trend and the 50-day SMA was above the 200-day SMA which shows the market was bullish. This was an overall positive period, as the stock prices continued to rise and the short-term prices impressions, were stronger than the long-term prices impressions, throughout most of the period, until the end 2021.
+![Sony stock price from 2020 to present with 50-day and 200-day moving averages. The chart shows periods of both bullish and bearish trends as the moving averages cross at various points throughout the analysis period.](Sony/Sony tables and graph/Plot Sony for final project.png){#fig-sony} 
 
-However, in 2022 and parts of 2023, the market had to characterize it with a sharp decrease in the strength of the upward trend, to an increase in the volatility and, at times, to several bearish market price trend forecasts. This period, as a result, resulted to what is commonly known as a declining market trend and sideways price movement. In these phases, the 200-day SMA often acted as a “resistance” price level.
+Analyzing Sony's stock price and the 50 and 200-day SMAs from 2020 to present shows clear trending behavior. In 2020 and 2021, the stock followed an upward trend and the 50-day SMA was above the 200-day SMA, showing the market was bullish. This was a positive period as stock prices continued to rise and short-term momentum was stronger than long-term momentum.
 
-In late 2023, the stock shows renewed bullish strength as a result of the 50-day SMA having positively crossed back above the 200-day SMA. This finctional behavior is what is commonly known as a bullish “golden cross” and it is known to result in price trending above and below all SMAs. As long as the stock price remains above both SMAs, and both SMAs are trending upwards, it suggests strong price momentum, and in this case, considerably improved long-term market performance.
+However, in 2022 and parts of 2023, the market showed a sharp decrease in momentum with increased volatility and several bearish periods. This resulted in a declining trend and sideways price movement. During these phases, the 200-day SMA often acted as a resistance level that the price struggled to break through.
 
+In late 2023, the stock shows renewed bullish strength as the 50-day SMA crossed back above the 200-day SMA. This is known as a bullish "golden cross" and typically signals improving momentum. As long as the stock price remains above both SMAs and both are trending upwards, it suggests strong momentum and improved long-term performance.
 
 ### Summary Tables
-recent_table <- sony_df %>%
-  tail(10) %>%
-  mutate(
-    Price = round(Price, 2),
-    SMA_50_day = round(SMA_50_day, 2),
-    SMA_200_day = round(SMA_200_day, 2)
-  )
+```{r sony-sample-table}
+#| echo: false
+#| tbl-cap: "Sony stock prices and moving averages sampled every 50 trading days to show progression over time"
 
-kable(recent_table,
-      col.names = c("Date", "Close Price ($)", "50-Day SMA ($)",
-                    "200-Day SMA ($)", "Market Status"),
-      caption = "Table 2: Sony Most Recent Trading Days",
-      align = c("l", "r", "r", "r", "c"),
-      row.names = FALSE)
+# tidyverse style
+# Primary Author: Kanon Tsuda
+# Reviewer: Mohit Naveen
 
 sample_table <- sony_df %>%
   slice(seq(1, n(), by = 50)) %>%
@@ -234,18 +231,45 @@ sample_table <- sony_df %>%
 kable(sample_table,
       col.names = c("Date", "Close Price ($)", "50-Day SMA ($)",
                     "200-Day SMA ($)", "Market Status"),
-      caption = "Table 1: Sony Stock Prices and Moving Averages (Sample)",
       align = c("l", "r", "r", "r", "c"),
       row.names = FALSE)
+```
 
+Table 3 presents Sony's stock data sampled every 50 trading days, showing how prices evolved over the analysis period. The Status column alternates between "Bullish" and "Bearish" more frequently than NVIDIA, reflecting Sony's more cyclical performance with periods of both growth and consolidation.
 
+```{r sony-recent-table}
+#| echo: false
+#| tbl-cap: "Sony's most recent 10 trading days showing current market conditions"
+
+# tidyverse style
+# Primary Author: Kanon Tsuda
+# Reviewer: Mohit Naveen
+
+recent_table <- sony_df %>%
+  tail(10) %>%
+  mutate(
+    Price = round(Price, 2),
+    SMA_50_day = round(SMA_50_day, 2),
+    SMA_200_day = round(SMA_200_day, 2)
+  )
+
+kable(recent_table,
+      col.names = c("Date", "Close Price ($)", "50-Day SMA ($)",
+                    "200-Day SMA ($)", "Market Status"),
+      align = c("l", "r", "r", "r", "c"),
+      row.names = FALSE)
+```
+
+Table 4 shows Sony's most recent 10 trading days as of December 2025. The recent data shows the current market status and how the moving averages are positioned relative to the stock price.
 
 # Discussion
 
 ## Comparing NVIDIA and Sony Moving Average Patterns
-On NVIDIA and Sony's moving averages, the difference in their market behavior over the time period in review is quite evident. NVIDIA's stock is highly bullish and it is very strong. It's 50-day SMA is resoundingly above the 200-day SMA for longty running stretches. This shows strong bullish momentum and sustained investor bullishness.
 
-On the other hand, Sony's stock shows quite a bit more in the way of cycles and show even alternating bullish and bearish phases. It is a market that has more long-term, but also more volatile and less in the way of higher suffocation. 
+Looking at NVIDIA and Sony's moving averages, the difference in their market behavior is quite clear. NVIDIA's stock is highly bullish with strong momentum. The 50-day SMA stays well above the 200-day SMA for long stretches, showing sustained investor confidence and strong upward momentum.
+
+On the other hand, Sony's stock shows more cyclical behavior with alternating bullish and bearish phases. The market is more volatile with the moving averages crossing more frequently. This reflects Sony's more diversified business model across multiple industries compared to NVIDIA's focus on GPUs and AI technology.
+
 
 ## Interpretation and Limitations
 The moving average crossover strategy is effective for identifying long-term trends and changes in momentum. Bullish crossovers generally align with rising stock prices, while bearish crossovers often correspond to periods of decline or consolidation. This confirms that moving averages are helpful tools for summarizing whole market direction.
