@@ -14,18 +14,15 @@ Here we can see an rough outline of how our moving average crossover would look 
 ・https://finance.yahoo.com/
 ・https://www.schwab.com/learn/story/understanding-simple-moving-average-crossovers
 
-Current Plan
-Each members will write codes using datas about stock from the website and make a presentation. Repo Structure Use this section to explain the structure of your repo. This should help visitors quickly figure out where they should look to find certain elements. Further, you can use this space to highlight and briefly explain important/key files in the repo.
-Repo Structure
-Use this section to explain the structure of your repo. This should help visitors quickly figure out where they should look to find certain elements. Further, you can use this space to highlight and briefly explain important/key files in the repo.
+## Current Plan
+Each members will write code using data about stock from the website and apply the moving average crossover to it. They will also make 2 tables and 1 graph that goes acordingly with it. Finally they should conclude their findings through the QMD file.
 
 ## Repo Structure
 - MLA9.csl --- citations 
 - apa7.csl --- citations 
 - README.md --- main overview of our project 
-- Stocks (folder) -
-- SONY: File containing code and visualizations of the stock apple with an overview of how to understand the visualizations and what it means 
-- NVDA: File containing code and visualizations of the stock nvidia with an overview of how to understand the visualizations and what it means 
+- SONY: File containing code and visualizations of the stock sony
+- NVDA: File containing code and visualizations of the stock nvidia 
 
 ## Authors
 Authors: Mohit, Kanon (mkn5394@psu.edu, kft5329@psu.edu)
