@@ -7,7 +7,7 @@ format:
     toc: true
     number-sections: true
 bibliography: references.bib
-csl: apa.csl
+csl: apa7.csl
 ---
 
 # Introduction
@@ -77,15 +77,15 @@ These derived attributes allow us to systematically identify trend direction, mo
 
 ## NVIDIA Stock Analysis
 
-```{r nvidia-data-prep}
+```{r nvidia-data-averages}
 #| echo: false
 #| message: false
 #| warning: false
 
 # tidyverse style
+# nvidia graph for moving averages
 # Primary Author: Mohit Naveen
 # Reviewer: Kanon Tsuda
-# Style Guide: Tidyverse Style
 
 library(quantmod)
 library(dplyr)
@@ -117,11 +117,12 @@ Figure @fig-nvidia shows NVIDIA's stock price from January 2020 through December
 
 ### Summary Tables
 
-```{r nvidia-sample-table}
+```{r nvidia-table-1}
 #| echo: false
 #| tbl-cap: "NVIDIA stock prices and moving averages sampled every 50 trading days to show progression over time"
 
 # tidyverse style
+# Nvidia sampled every 50 trading days
 # Primary Author: Mohit Naveen
 # Reviewer: Kanon Tsuda
 
@@ -142,11 +143,12 @@ kable(sample_table,
 
 Table 1 shows NVIDIA's stock data sampled every 50 trading days. The closing price increased from around $40-50 in early 2020 to over $100 by 2025, showing dramatic growth. The Status column is mostly "Bullish," meaning the 50-day moving average stayed above the 200-day for most of this period. This reflects strong investor confidence, especially as AI technology became more important. Both moving averages trend upward, though the 200-day SMA shows a smoother increase while the 50-day responds faster to price changes.
 
-```{r nvidia-recent-table}
+```{r nvidia-table-2}
 #| echo: false
 #| tbl-cap: "NVIDIA's most recent 10 trading days showing current market conditions"
 
 # tidyverse style
+# Nvidia most 10 recent trading days
 # Primary Author: Mohit Naveen
 # Reviewer: Kanon Tsuda
 
@@ -170,12 +172,13 @@ Table 2 displays NVIDIA's most recent 10 trading days as of December 2025. The s
 
 
 ## Sony Stock Analysis
-```{r sony-data-prep}
+```{r sony-graph-average}
 #| echo: false
 #| message: false
 #| warning: false
 
 # tidyverse style
+# Sony's moving day averages
 # Primary Author: Kanon Tsuda
 # Reviewer: Mohit Naveen
 
@@ -212,11 +215,12 @@ However, in 2022 and parts of 2023, the market showed a sharp decrease in moment
 In late 2023, the stock shows renewed bullish strength as the 50-day SMA crossed back above the 200-day SMA. This is known as a bullish "golden cross" and typically signals improving momentum. As long as the stock price remains above both SMAs and both are trending upwards, it suggests strong momentum and improved long-term performance.
 
 ### Summary Tables
-```{r sony-sample-table}
+```{r sony-table-1}
 #| echo: false
 #| tbl-cap: "Sony stock prices and moving averages sampled every 50 trading days to show progression over time"
 
 # tidyverse style
+# Sony sampled every 50 trading days
 # Primary Author: Kanon Tsuda
 # Reviewer: Mohit Naveen
 
@@ -237,11 +241,12 @@ kable(sample_table,
 
 Table 3 presents Sony's stock data sampled every 50 trading days, showing how prices evolved over the analysis period. The Status column alternates between "Bullish" and "Bearish" more frequently than NVIDIA, reflecting Sony's more cyclical performance with periods of both growth and consolidation.
 
-```{r sony-recent-table}
+```{r sony-table-2}
 #| echo: false
 #| tbl-cap: "Sony's most recent 10 trading days showing current market conditions"
 
 # tidyverse style
+# Sony most recent 10 trading days
 # Primary Author: Kanon Tsuda
 # Reviewer: Mohit Naveen
 
@@ -308,8 +313,5 @@ This project used 50-day and 200-day simple moving averages to analyze NVIDIA an
 
 # Code Appendix
 
-```{r code-appendix}
-#| ref.label: knitr::all_labels()
-#| echo: true
-#| eval: false
+```{r codeAppend, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}
 ```
