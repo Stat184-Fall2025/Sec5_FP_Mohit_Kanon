@@ -200,24 +200,61 @@ sony_df <- data.frame(
 
 ### Price Trend Visualization
 
-![Sony stock price with 50-day and 200-day moving averages from 2020 to present. [add detailed description here following the NVIDIA example].](sony/sony_chart.png){#fig-sony}
+Analyzing Sony's stock price and the 50 and 200-day SMAs, the periods from 2020 to the present show obvious trending behavior. In 2020 and 2021, the stock followed an upward trend and the 50-day SMA was above the 200-day SMA which shows the market was bullish. This was an overall positive period, as the stock prices continued to rise and the short-term prices impressions, were stronger than the long-term prices impressions, throughout most of the period, until the end 2021.
 
-[write 2-3 paragraphs describing Sony's chart, identifying trends, crossovers, and what the moving averages reveal about Sony's performance]
+However, in 2022 and parts of 2023, the market had to characterize it with a sharp decrease in the strength of the upward trend, to an increase in the volatility and, at times, to several bearish market price trend forecasts. This period, as a result, resulted to what is commonly known as a declining market trend and sideways price movement. In these phases, the 200-day SMA often acted as a “resistance” price level.
+
+In late 2023, the stock shows renewed bullish strength as a result of the 50-day SMA having positively crossed back above the 200-day SMA. This finctional behavior is what is commonly known as a bullish “golden cross” and it is known to result in price trending above and below all SMAs. As long as the stock price remains above both SMAs, and both SMAs are trending upwards, it suggests strong price momentum, and in this case, considerably improved long-term market performance.
+
 
 ### Summary Tables
+recent_table <- sony_df %>%
+  tail(10) %>%
+  mutate(
+    Price = round(Price, 2),
+    SMA_50_day = round(SMA_50_day, 2),
+    SMA_200_day = round(SMA_200_day, 2)
+  )
+
+kable(recent_table,
+      col.names = c("Date", "Close Price ($)", "50-Day SMA ($)",
+                    "200-Day SMA ($)", "Market Status"),
+      caption = "Table 2: Sony Most Recent Trading Days",
+      align = c("l", "r", "r", "r", "c"),
+      row.names = FALSE)
+
+sample_table <- sony_df %>%
+  slice(seq(1, n(), by = 50)) %>%
+  mutate(
+    Price = round(Price, 2),
+    SMA_50_day = round(SMA_50_day, 2),
+    SMA_200_day = round(SMA_200_day, 2)
+  )
+
+kable(sample_table,
+      col.names = c("Date", "Close Price ($)", "50-Day SMA ($)",
+                    "200-Day SMA ($)", "Market Status"),
+      caption = "Table 1: Sony Stock Prices and Moving Averages (Sample)",
+      align = c("l", "r", "r", "r", "c"),
+      row.names = FALSE)
+
 
 
 # Discussion
 
 ## Comparing NVIDIA and Sony Moving Average Patterns
+On NVIDIA and Sony's moving averages, the difference in their market behavior over the time period in review is quite evident. NVIDIA's stock is highly bullish and it is very strong. It's 50-day SMA is resoundingly above the 200-day SMA for longty running stretches. This shows strong bullish momentum and sustained investor bullishness.
+
+On the other hand, Sony's stock shows quite a bit more in the way of cycles and show even alternating bullish and bearish phases. It is a market that has more long-term, but also more volatile and less in the way of higher suffocation. 
 
 ## Interpretation and Limitations
+The moving average crossover strategy is effective for identifying long-term trends and changes in momentum. Bullish crossovers generally align with rising stock prices, while bearish crossovers often correspond to periods of decline or consolidation. This confirms that moving averages are helpful tools for summarizing whole market direction.
+
+However, moving averages are lagging indicators and might signal trends only after significant price movements have occured. In addition, this analysis does not account for external factors such as economic conditions, company news, or earnings reports. Relying on historical price data may oversimplify complex market dynamics.
 
 # Conclusion
 
-- Main findings about NVIDIA and Sony
-- What you learned about moving averages
-- Future analysis directions
+This project used 50-day and 200-day simple moving averages to analyze NVIDIA and Sony stock trends from 2020 to the present. NVIDIA demonstrated strong and sustained bullish momentum, while Sony exhibited more cyclical price movements. Overall, moving averages provide an effective way to visualize long-term trends, though they are most valuable when combined with more detailed analysis.
 
 # Author Contributions
 
